@@ -10,7 +10,8 @@ for wort in woerter:
  
     print(wort.capitalize())
 
-#result
+#result 
+
 
 
 
