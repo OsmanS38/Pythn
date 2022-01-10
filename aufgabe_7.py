@@ -9,7 +9,8 @@ for wort in woerter:
 #    print(wort.upper())
  
     print(wort.capitalize())
-p
+
+#result
 
 
 
