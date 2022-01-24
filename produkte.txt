@@ -1,0 +1,5 @@
+Apfel;4
+Birne;2
+Kiwi;6
+Gurke;1
+Salat;1
