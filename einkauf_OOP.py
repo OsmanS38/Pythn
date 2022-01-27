@@ -1,72 +1,78 @@
 #!/usr/bin/python3
 
-# produkte = [ {'name': 'apfel', 'menge': 4, 'farbe': 'gruen'}, {'name': 'birne', 'menge': 3, 'preis': 3.4}, {'name': 'kiwi', 'menge': 6} ]
-
+# import 
 import os
 import lib.item as item
-os.system('clear')
+import lib.einkaufsliste as mylist
+
+# erzeuge einen einkaufwagen
+einkaufwagen = mylist.Einkaufsliste()
+
+###########################################
+# erzeuge ein Objekt
+apfel = item.Item(name='Apfel', price=0.45)
+apfel.modify(price=0.55)
+birne = item.Item(name='Birne', price=1.25)
+kiwi = item.Item(name='Kiwi', price=0.35)
+einkaufwagen.append(apfel)
+einkaufwagen.append(birne)
+einkaufwagen.append(kiwi)
+############################
 
 
-#ding1 = item.Item()
-#ding1.create(name='Fred', price=2)
-ding1 = item.Item(name='Fred', price=2)
+
+#main loop, Haupschlife
+action = ''
+while action != 'q':
+    print('#' * 30 )
+    print('[q]uit')
+    print('[e]inlesen der Produktliste')
+    print('[n]eu anlegen der Produktliste')
+    print('Produkte er[f]assen')
+    print('Produkte [l]oeschen')
+    print('Produkte [a]nzeigen')
+    print('Produkte [v]eraendern')
+    print('Produkte [s]peichern')
+    action = input('Waehlen Sie ein Aktion aus: ' )
+
+    # Daten einlesen
+    if action == 'e':
+        pass
+
+    # Daten anzeigen
+    if action == 'a':
+        einkaufwagen.show(True)
+
+    # neue einkaufwagen anlegen
+    if action == 'n':
+        einkaufwagen = mylist.Einkaufsliste()
+
+    # Daten erfassen
+    if action == 'f':
+        os.system('clear')
+        myname = input('Was wollen Sie kaufen:')
+        myprice =input('Was kostet das :')
+        product = item.Item(name=myname, price=myprice)
+        einkaufwagen.append(product)
+
+    # Daten loeschen
+    if action == 'l':
+        einkaufwagen.show(True)
+        number = int(input('Was wollen Sie loeschen:'))
+        del(einkaufwagen.mylist[number]) 
+        os.system('clear')
+
+    # Daten aendern
+    if action == 'v':
+        einkaufwagen.show(True)
+        number = int(input('Was wollen Sie aendern:'))
+        name = input('Wie soll der neu Name lauten [ENTER fuer alten Wert belassen]')
+        price = input('Wie ist der neu Preis [ENTER fuer alten Wert belassen]')
+        einkaufwagen.modify(number=number, name=name, price=price)
 
 
-#ding2 = item.Item()
-#ding2.create(name='Apfel', price=3)
-ding2 = item.Item(name='Apfel', price=3)
 
-ding1.show()
-ding1.modify(name='Joe')
-ding1.show()
-ding1.name = 'Eva'
-print(ding1.name)
-ding1.show()
-print(ding1.brutto)
-print(ding2.brutto)
-print(item.Item.brutto)
+with open(produktliste, 'w') as fh:
+    for produkt in produkte:
+        fh.write(f'{produkt["name"]};{produkt["menge"]}\n')
 
-
-#
-#action = ''
-#while action != 'q':
-#    print('#' * 30 )
-#    print('[q]uit')
-#    print('[e]inlesen der Produktliste')
-#    print('[n]eu anlegen der Produktliste')
-#    print('Produkte er[f]assen')
-#    print('Produkte [l]oeschen')
-#    print('Produkte [a]nzeigen')
-#    print('Produkte [v]eraendern')
-#    print('Produkte [s]peichern')
-#    action = input('Waehlen Sie ein Aktion aus: ' )
-#
-#    # Daten einlesen
-#    if action == 'e':
-#        pass
-#
-#    # Daten anzeigen
-#    if action == 'a':
-#        pass
-#
-#    # neue Produktliste anlegen
-#    if action == 'n':
-#        pass
-#
-#    # Daten erfassen
-#    if action == 'f':
-#        pass
-#
-#    # Daten loeschen
-#    if action == 'l':
-#        pass
-#
-#    # Daten aendern
-#    if action == 'v':
-#        pass
-#
-#
-#with open(produktliste, 'w') as fh:
-#    for produkt in produkte:
-#        fh.write(f'{produkt["name"]};{produkt["menge"]}\n')
-#

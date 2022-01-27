@@ -1,36 +1,71 @@
 #!/usr/bin/python3
 
 class Item():
-    brutto = 1
+
+    # Klasseneigenschaft
     tax = 0.19
 
-    def __init__(self, name='', price=0):
+    def __init__(self, name='', price=0.0):
+        """
+        Initialisiert ein Object und belegt dabei die Objekteigenschaften mit Werten
+
+        @param: name (str) Name des Produktes
+        @param: price (float) Preis eines Produktes
+        @return: void
+        """
+        try:
+           price = float(price)
+        except:
+            print('Eingabe kann nicht in ein float umgewandelt werden.')
         if name == '':
             print('Eigenschaft "name" fehlt')
-        if price == 0:
+        if price <= 0:
             print('Eigenschaft "price" fehlt')
+        self.set_name(name=name)
+        self.set_price(price=price)
 
-        self.price = price * 2
-        self.brutto = int(self.price) * (Item.tax + 1)
-        self.name = self.set_name(name=name)
+    def modify(self, name='', price=0.0):
+        """
+        Modifiziert die Objekteigenschaften
 
-    def modify(self, name='', price=0):
-        if name:
-            self.name = self.set_name(name=name)
-        if price != 0:
-            self.price = price
-            self.brutto = int(self.price) * (Item.tax + 1)
+        @param: name (str) Name des Produktes
+        @param: price (float) Preis eines Produktes
+        @return: void
+        """
+        if name != '':
+            self.set_name(name=name)
+        if price != 0.0:
+            self.set_price(price=price)
 
     def set_name(self, name=''):
-        self.name = name.upper()
+        """
+        Modifiziert die Objekteigenschaft name
 
-    def delete(self):
-        pass
+        @param: name (str) Name des Produktes
+        @return: void
+        """
+        self.name = name
 
-    def save(self):
-        pass
+    def set_price(self, price=0.0):
+        """
+        Modifiziert die Objekteigenschaft price
 
-    def show(self):
-        print(f'Name: {self.name}')
-        print(f'Brutto: {Item.brutto}')
+        @param: price (float) Preis eines Produktes
+        @return: void
+        """
+        self.price = float(price)
+        self.brutto = int(self.price) * (Item.tax + 1)
 
+
+    def show(self,counter=None):
+        """
+        Zeigt alle Objekteigenschaften an
+
+        @param: counter (int) zahler zur Objektauswahl
+        @return: void
+        """
+        if counter is None:
+            print(f'Name: {self.name}')
+            print(f'Preis: {self.price}')
+        else:
+            print(f'[{counter}] {self.name}')
