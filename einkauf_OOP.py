@@ -4,6 +4,7 @@
 import os
 import lib.item as item
 import lib.einkaufsliste as mylist
+#import json
 
 # erzeuge einen einkaufwagen
 einkaufwagen = mylist.Einkaufsliste()
@@ -37,7 +38,9 @@ while action != 'q':
 
     # Daten einlesen
     if action == 'e':
-        pass
+        os.system('clear')
+        file = input('Aus welcher Datei sollen die Daten geladen werden: ')
+        einkaufwagen.import_data(file)
 
     # Daten anzeigen
     if action == 'a':
@@ -70,9 +73,9 @@ while action != 'q':
         price = input('Wie ist der neu Preis [ENTER fuer alten Wert belassen]')
         einkaufwagen.modify(number=number, name=name, price=price)
 
+#with open('products.json') as fh
 
-
-with open(produktliste, 'w') as fh:
-    for produkt in produkte:
-        fh.write(f'{produkt["name"]};{produkt["menge"]}\n')
+#with open(produktliste, 'w') as fh:
+#    for produkt in produkte:
+#        fh.write(f'{produkt["name"]};{produkt["menge"]}\n')
 
