@@ -69,3 +69,11 @@ class Item():
             print(f'Preis: {self.price}')
         else:
             print(f'[{counter}] {self.name}')
+
+    def get_data(self):
+        """
+        Liefert alle Objekteigenschaften zurueck
+
+        @return: (dict)
+        """
+        return { 'name': self.name, 'price': self.price }

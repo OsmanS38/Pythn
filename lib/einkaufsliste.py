@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 
+import json
+
 class Einkaufsliste():
     """
     Liste mit zu kaufenden Produkten
@@ -58,7 +60,10 @@ class Einkaufsliste():
 
         @return: void 
         """
-        pass
+        with open(self.file) as fh:
+            data = json.loads(fh)
+        print(data)
+
 
     def import_csv(self, file):
         """
@@ -87,5 +92,18 @@ class Einkaufsliste():
         if number is not None:
             self.mylist[number].modify(name=name, price=price)
 
+    def save(self):
+        product_liste = list()
+        for item in self.mylist:
+            product_liste.append(item.get_data())
+        with open('products1.json', 'w') as fh:
+            json.dump(self.mylist, fh)
 
+    def clear(self):
+        """
+        Leer die Liste mylist.
+
+        @return: void
+        """
+        self.mylist = list()
 

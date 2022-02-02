@@ -1,10 +1,13 @@
 #!/usr/bin/python3
 
-# import 
+# import
 import os
 import lib.item as item
 import lib.einkaufsliste as mylist
+#loesche Bildschirm
+os.system('clear')
 #import json
+
 
 # erzeuge einen einkaufwagen
 einkaufwagen = mylist.Einkaufsliste()
@@ -62,7 +65,7 @@ while action != 'q':
     if action == 'l':
         einkaufwagen.show(True)
         number = int(input('Was wollen Sie loeschen:'))
-        del(einkaufwagen.mylist[number]) 
+        einkaufwagen.remove(number)
         os.system('clear')
 
     # Daten aendern
@@ -72,6 +75,12 @@ while action != 'q':
         name = input('Wie soll der neu Name lauten [ENTER fuer alten Wert belassen]')
         price = input('Wie ist der neu Preis [ENTER fuer alten Wert belassen]')
         einkaufwagen.modify(number=number, name=name, price=price)
+
+    # Daten speichern
+    if action == 's':
+       einkaufwwagen.save()
+
+
 
 #with open('products.json') as fh
 
